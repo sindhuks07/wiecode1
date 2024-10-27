@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Registration Form</title>
+  <style>
+    /* CSS Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #6a89cc, #b8e994);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      animation: slideDown 1s ease-in-out;
+    }
+
+    .form-title {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #3498db;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #3498db;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #74b9ff;
+    }
+
+    #successMessage {
+      text-align: center;
+      margin-top: 15px;
+      color: #2ecc71;
+      display: none;
+    }
+
+    /* Slide-down animation */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="form-title">Team Registration</h1>
+    <form id="registrationForm">
+      <div class="input-group">
+        <label for="teamName">Team Name</label>
+        <input type="text" id="teamName" name="teamName" required />
+      </div>
+
+      <div class="input-group">
+        <label for="teamSize">Team Size (2 to 4)</label>
+        <select id="teamSize" name="teamSize" required>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="teamLeader">Team Leader (Female)</label>
+        <input type="text" id="teamLeader" name="teamLeader" required />
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+    <p id="successMessage">Thank you for registering!</p>
+  </div>
+
+  <script>
+    // JavaScript Validation and Form Handling
+    document.getElementById('registrationForm').addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent form submission from refreshing the page
+
+      const teamLeader = document.getElementById('teamLeader').value.trim().toLowerCase();
+
+      // Simple validation: Check if the name ends with typical female indicators
+      const isFemale = teamLeader.endsWith('a') || teamLeader.endsWith('e') || teamLeader.endsWith('i');
+
+      if (!isFemale) {
+        alert('Please enter a valid female name for the Team Leader.');
+        return;
+      }
+
+      // Show the success message
+      const successMessage = document.getElementById('successMessage');
+      successMessage.style.display = 'block';
+
+      // Optionally clear the form
+      this.reset();
+    });
+  </script>
+</body>
+</html>
